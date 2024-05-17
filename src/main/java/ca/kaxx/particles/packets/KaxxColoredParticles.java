@@ -1,11 +1,50 @@
 package ca.kaxx.particles.packets;
 
 import net.minecraft.server.v1_8_R3.EnumParticle;
+import org.bukkit.Location;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
 
 public class KaxxColoredParticles extends KaxxParticles {
+
+    /**
+     * Creates a colored particle effect.
+     *
+     * @param particle the type of particle to display
+     * @param location the location of the particle
+     * @param color the color of the particle (using {@link Color})
+     * @param count the number of particles to display
+     * @param data additional data for the particle
+     */
+    public KaxxColoredParticles(@Nonnull EnumParticle particle, Location location, @Nonnull Color color, int count, int[] data) {
+        this(particle, false, location, color, count, data);
+    }
+
+    /**
+     * Creates a colored particle effect.
+     *
+     * @param particle the type of particle to display
+     * @param far whether the particles are displayed at a long distance
+     * @param location the location of the particle
+     * @param color the color of the particle (using {@link Color})
+     */
+    public KaxxColoredParticles(@Nonnull EnumParticle particle, boolean far, Location location, @Nonnull Color color) {
+        this(particle, far, location.getX(), location.getY(), location.getZ(), color, 0, new int[0]);
+    }
+
+
+
+    /**
+     * Creates a colored particle effect.
+     *
+     * @param particle the type of particle to display
+     * @param location the location of the particle
+     * @param color the color of the particle (using {@link Color})
+     */
+    public KaxxColoredParticles(@Nonnull EnumParticle particle, Location location, @Nonnull Color color) {
+        this(particle, false, location.getX(), location.getY(), location.getZ(), color, 0, new int[0]);
+    }
 
     /**
      * Creates a colored particle effect.
@@ -34,5 +73,19 @@ public class KaxxColoredParticles extends KaxxParticles {
         this.setOffsetX(r);
         this.setOffsetY(g);
         this.setOffsetZ(b);
+    }
+
+    /**
+     * Creates a colored particle effect.
+     *
+     * @param particle the type of particle to display
+     * @param far whether the particles are displayed at a long distance
+     * @param location the location of the particle
+     * @param color the color of the particle (using {@link Color})
+     * @param count the number of particles to display
+     * @param data additional data for the particle
+     */
+    public KaxxColoredParticles(final @Nonnull EnumParticle particle, final boolean far, final @Nonnull Location location, final @Nonnull Color color, final int count, final int[] data) {
+        this(particle, far, location.getX(), location.getY(), location.getZ(), color, count, data);
     }
 }

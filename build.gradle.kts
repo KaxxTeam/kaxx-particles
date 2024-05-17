@@ -39,14 +39,14 @@ publishing {
             from(components["java"])
         }
     }
-    //repositories {
-    //    maven {
-    //        url = uri("https://maven.pkg.github.com/kaxxteam/kaxx-items")
-    //        name = "GitHubPackages"
-    //        credentials {
-    //            username = env.GITHUB_USERNAME.value
-    //            password = env.GITHUB_TOKEN.value
-    //        }
-    //    }
-    //}
+    repositories {
+        maven {
+            url = uri("https://maven.pkg.github.com/kaxxteam/kaxx-particles")
+            name = "GitHubPackages"
+            credentials {
+                username = env.GITHUB_USERNAME.value
+                password = env.GITHUB_TOKEN.value
+            }
+        }
+    }
 }

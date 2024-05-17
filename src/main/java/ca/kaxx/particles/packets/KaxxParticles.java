@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 import lombok.Data;
 import net.minecraft.server.v1_8_R3.EnumParticle;
 import net.minecraft.server.v1_8_R3.PacketPlayOutWorldParticles;
+import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
@@ -109,6 +110,26 @@ public class KaxxParticles {
      * Represents a particle effect in Minecraft.
      *
      * @param particle the type of particle to display
+     * @param location the location of the particle
+     */
+    public KaxxParticles(final @Nonnull EnumParticle particle, final @Nonnull Location location) {
+        this(particle, false, location, 0, 0, 0, 0, 0, new int[0]);
+    }
+
+    /**
+     * Represents a particle effect in Minecraft.
+     *
+     * @param particle the type of particle to display
+     * @param far whether the particles are displayed at a long distance
+     * @param location the location of the particle
+     */
+    public KaxxParticles(final @Nonnull EnumParticle particle, final boolean far, final @Nonnull Location location) {
+        this(particle, far, location, 0, 0, 0, 0, 0, new int[0]);
+    }
+    /**
+     * Represents a particle effect in Minecraft.
+     *
+     * @param particle the type of particle to display
      * @param far whether the particles are displayed at a long distance
      * @param x the x coordinate of the particle
      * @param y the y coordinate of the particle
@@ -147,6 +168,36 @@ public class KaxxParticles {
         this.count = count;
         this.data = data;
     }
+
+    /**
+     * Represents a particle effect in Minecraft.
+     *
+     * @param particle the type of particle to display
+     * @param far whether the particles are displayed at a long distance
+     * @param location the location of the particle
+     * @param offsetX the offset on the x-axis
+     * @param offsetY the offset on the y-axis
+     * @param offsetZ the offset on the z-axis
+     * @param speed the speed of the particle
+     * @param count the number of particles to display
+     * @param data additional data for the particle
+     */
+    public KaxxParticles(final @Nonnull EnumParticle particle, final boolean far, final @Nonnull Location location, final float offsetX, final float offsetY, final float offsetZ, final float speed, final int count, final int[] data) {
+        Preconditions.checkArgument(count >= 0, "The count must be a positive integer.");
+        this.particle = particle;
+        this.far = far;
+        this.x = location.getX();
+        this.y = location.getY();
+        this.z = location.getZ();
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
+        this.offsetZ = offsetZ;
+        this.speed = speed;
+        this.count = count;
+        this.data = data;
+    }
+
+
 
     /**
      * Sends a packet to a player to display particles at a specific location.
